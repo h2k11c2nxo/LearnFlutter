@@ -11,13 +11,13 @@ class CategoryItem extends StatelessWidget{
     Color _color = category.color;
     return InkWell(
       onTap: (){
-        print('ABC: ${category.content}');
+       Navigator.pushNamed(context, FoodsPage.routeName, arguments: {'category' :category});
         //Navigation page
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) =>FoodsPage()
-          )
-        );
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(
+        //     builder: (context) =>FoodsPage(category)
+        //   )
+        // );
       },
       splashColor: Colors.deepPurpleAccent,
       child: Container(

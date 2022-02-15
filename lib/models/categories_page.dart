@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:food_app/models/category_item.dart';
 import 'package:food_app/models/fake_data.dart';
 class CategoriesPage extends StatelessWidget{
+  static const String routeName ='/CategoriesPage';
   @override
   Widget build(BuildContext context){
     return GridView(
