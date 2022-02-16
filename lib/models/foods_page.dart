@@ -1,26 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/models/category.dart';
-import 'package:food_app/models/category_item.dart';
 import 'package:food_app/models/detail_food.dart';
 import 'package:food_app/models/fake_data.dart';
 import 'package:food_app/models/food.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 
 class FoodsPage extends StatelessWidget {
   static const String routeName = '/FoodsPage';
-  late Category category;
   // FoodsPage(this.category, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
+    final  arguments = ModalRoute.of(context)?.settings.arguments as Map<String, Category>;
     List<Food> foods =
-        FAKE_FOOD.where((food) => food.categoryId == category.id).toList();
+        FAKE_FOOD.where((food) => food.categoryId == arguments['category']?.id).toList();
     return Scaffold(
         appBar: AppBar(
-          title: Text('abc',
-            // 'Food from ${arguments['category']}',
+          backgroundColor: Colors.cyan,
+          title: Text(
+            'Food from ${arguments['category']?.content}',
             style: const TextStyle(fontSize: 30, fontFamily: 'Redressed'),
           ),
         ),
@@ -32,11 +30,7 @@ class FoodsPage extends StatelessWidget {
               Food food = foods[index];
               return InkWell(
                 onTap: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => DetailFood(food)
-                    ),
-                  );
+                  Navigator.pushNamed(context, DetailFood.routeName, arguments: {'food':food});
                 },
                 child: Stack(
                   children: <Widget>[
@@ -71,7 +65,7 @@ class FoodsPage extends StatelessWidget {
                               Text(
                                 '${food.duration.inMinutes} minutes',
                                 style:
-                                TextStyle(fontSize: 20, color: Colors.white),
+                                const TextStyle(fontSize: 20, color: Colors.white),
                               )
                             ],
                           ),

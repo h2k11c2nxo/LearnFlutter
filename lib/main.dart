@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/categories_page.dart';
+import 'package:food_app/models/detail_food.dart';
 import 'package:food_app/models/foods_page.dart';
 import 'models/category.dart';
 
@@ -13,8 +14,9 @@ class MyApp extends StatelessWidget{
       title: 'Food app',
       initialRoute: '/',
       routes: {
-        '/CategoryPage': (context) => CategoriesPage(),
-        '/FoodsPage': (context) => FoodsPage()
+        CategoriesPage.routeName: (context) => CategoriesPage(),
+        FoodsPage.routeName: (context) => FoodsPage(),
+        DetailFood.routeName: (context) => DetailFood()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
